@@ -11,4 +11,14 @@ def altchars(data):
         retval += f(index, char)
     return retval
 
-indata = altchars(indata)
+def isVowel(char):
+    lowerchar = str.lower(char)
+    vowels = ['a','e','i','o','u','y']
+    return lowerchar in vowels
+    
+
+altdata = altchars(indata)
+altwords = altdata.split()
+for w in altwords:
+    for c in w:
+        print isVowel(c)
