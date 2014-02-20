@@ -1,8 +1,11 @@
-
-
 fd = open("bibleverse.txt")
 indata = fd.read()
 fd.close()
+
+def isVowel(char):
+    lowerchar = str.lower(char)
+    vowels = ['a','e','i','o','u','y']
+    return lowerchar in vowels
 
 def altchars(data):
     f = lambda index, char : (str.upper, str.lower)[index%2](char)
@@ -36,3 +39,9 @@ def rules(data):
             acc += 'L'
         else:
             pass
+
+altdata = altchars(indata)
+altwords = altdata.split()
+for w in altwords:
+    for c in w:
+        print isVowel(c)
