@@ -1,0 +1,3 @@
+
+
+fd = open("bibleverse.txt")
