@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import re
 import sys
 
 """
@@ -9,6 +10,7 @@ import sys
 
 def isvowel(char):
     from random import random
+    char = char.lower()
 
     vowels = 'a', 'e', 'i', 'o', 'u'
     if char in vowels:
@@ -16,6 +18,12 @@ def isvowel(char):
     if char == 'y':
         return random() < 0.5
     return False
+
+
+def isconsonant(char):
+    from strings import ascii_lowercase
+    char = char.lower()
+    return (char in ascii_lowercase) and not isvowel(char)
 
 
 def next_cond(arry, cond):
@@ -86,13 +94,27 @@ def five(word):
       aRe uSuaLLy uPPeRCaSe (LiKe iN uPPeRCaSe tHe P's) sO tHaT tHe VoWeLs
       WiLL BoTh eNd uP LoWeRCaSeD!
     """
-    pass
+    _ = ''.join(map(str, map(int, map(isvowel, word))))
+    up_mid = [m.start() for m in re.finditer('1001', _)]
+    lo_mid = [m.start() for m in re.finditer('0110', _)]
+    li = list(word)
+    for start in up_mid:
+        li[start] = li[start].lower()
+        li[start+1] = li[start+1].upper()
+        li[start+2] = li[start+2].upper()
+        li[start+3] = li[start+3].lower()
 
+    for start in lo_mid:
+        li[start] = li[start].upper()
+        li[start+1] = li[start+1].lower()
+        li[start+2] = li[start+2].lower()
+        li[start+3] = li[start+3].upper()
+
+    return ''.join(li)
 
 def main():
-    fd = open("bibleverse.txt")
-    indata = fd.read()
-    fd.close()
+    with open("bibleverse.txt") as fd:
+        indata = fd.read()
 
     g = split_tup(indata)
 
@@ -102,7 +124,7 @@ def main():
         return word
 
     for word in g:
-        word = rules(word, one, two, three, four)
+        word = rules(word, one, two, three, four, five)
         sys.stdout.write(word)
         sys.stdout.write(next(g, ''))
 
