@@ -20,12 +20,6 @@ def isvowel(char):
     return False
 
 
-def isconsonant(char):
-    from strings import ascii_lowercase
-    char = char.lower()
-    return (char in ascii_lowercase) and not isvowel(char)
-
-
 def next_cond(arry, cond):
     for i, elem in enumerate(arry):
         if cond(elem): return i
