@@ -4,8 +4,8 @@ import re
 import sys
 
 """
-  aRe tHeRe RuLeZ yOu FoLLoW wHeN TyPiNg LiKe a ReTaRd? cLeaRLy, LiKe
-  HeLLo?!?!?! oF CouRse tHeRe aRe!!! tHe RuLeZ oF CaNdY CaPs:
+aRe tHeRe RuLeZ yOu FoLLoW wHeN TyPiNg LiKe a GooBeR? cLeaRLy, LiKe
+HeLLo?!?!?! oF CouRse tHeRe aRe!!! tHe RuLeZ oF CaNdY CaPs:
 """
 
 def isvowel(char):
@@ -52,14 +52,14 @@ def split_tup(text):
 
 def one(word):
     """
-      1. nO BiG e'S, nO LiTTLe L's!
+    1. nO BiG e'S, nO LiTTLe L's!
     """
     return word.replace('E', 'e').replace('l', 'L')
 
 
 def two(word):
     """
-      2. iF tHe SeCoND LeTTeR iS a VoWeL, uPPeRCaSe tHe FiRsT LeTTeR!
+    2. iF tHe SeCoND LeTTeR iS a VoWeL, uPPeRCaSe tHe FiRsT LeTTeR!
     """
     if next_cond(word, isvowel)==1:
         word = word[0].upper() + word[1:]
@@ -68,7 +68,7 @@ def two(word):
 
 def three(word):
     """
-      3. iF tHe FiRsT LeTTeR iS a VoWeL, LoWeRCaSe tHe FiRsT LeTTeR!
+    3. iF tHe FiRsT LeTTeR iS a VoWeL, LoWeRCaSe tHe FiRsT LeTTeR!
     """
     if next_cond(word, isvowel)==0:
         word = word[0].lower() + word[1:]
@@ -77,8 +77,8 @@ def three(word):
 
 def four(word):
     """
-      4. iF tHe FiRsT aND SeCoNd aRen't VoWeLs, BuT tHe tHiRd iS, LoWeRCaSe
-      tHe FiRsT sO tHe tHiRd WiLL Be LoWeRcaSeD!
+    4. iF tHe FiRsT aND SeCoNd aRen't VoWeLs, BuT tHe tHiRd iS, LoWeRCaSe
+    tHe FiRsT sO tHe tHiRd WiLL Be LoWeRcaSeD!
     """
     if next_cond(word, isvowel)==2:
         word = \
@@ -88,11 +88,9 @@ def four(word):
 
 def five(word):
     """
-      5. tWo VoWeLs oR CoNSeNaNtS NeXt tO eAcH oTheR MaY oR MaY Not Be tHe
-      SaMe CaSe- iT's uP tO tHe TyPeR...
-      iF tWo CoNSeNaNtS aRe SuRRoUnDeD bY VoWeLs, tHeN tHe tWo CoNseNaNtS
-      aRe uSuaLLy uPPeRCaSe (LiKe iN uPPeRCaSe tHe P's) sO tHaT tHe VoWeLs
-      WiLL BoTh eNd uP LoWeRCaSeD!
+    5. iF tWo CoNSeNaNtS aRe SuRRoUnDeD bY VoWeLs, tHeN tHe tWo CoNseNaNtS
+    aRe uSuaLLy uPPeRCaSe (LiKe iN uPPeRCaSe tHe P's) sO tHaT tHe VoWeLs
+    WiLL BoTh eNd uP LoWeRCaSeD!
     """
     _ = ''.join(map(str, map(int, map(isvowel, word))))
     up_mid = [m.start() for m in re.finditer('1001', _)]
